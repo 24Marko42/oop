@@ -15,26 +15,26 @@
 # который изучает данный язык программирования, не используй дополнительные библиотеки
 
 
-# Класс, представляющий файл
+# Класс файл
 class File:
     def __init__(self, name):
         self.name = name
         self.content = ""  # содержимое файла
 
-# Класс, представляющий директорию (папку)
+# Класс директория
 class Directory:
     def __init__(self, name):
         self.name = name
         self.subdirectories = {}  # словарь: имя -> Directory
         self.files = {}           # словарь: имя -> File
 
-# Класс, представляющий всю файловую систему
+# Класс файловая система
 class FileSystem:
     def __init__(self):
         self.root = Directory("/")  # корневая директория
 
     # Вспомогательная функция: находит директорию по пути
-    def _traverse(self, path):
+    def traverse(self, path):
         parts = [p for p in path.strip("/").split("/") if p]
         current = self.root
         for part in parts:
@@ -56,21 +56,21 @@ class FileSystem:
     # Команда 1: создать директорию (включая вложенные)
     def create_directory(self, path):
         self._create_path(path)
-        print(f"📁 Директория '{path}' создана.")
+        print(f" Директория '{path}' создана.")
 
     # Команда 2: вывести содержимое директории
     def list_directory(self, path):
         dir_obj = self._traverse(path)
         if dir_obj is None:
-            print(f"❌ Директория '{path}' не найдена.")
+            print(f" Директория '{path}' не найдена.")
             return
-        print(f"\n📂 Содержимое директории '{path}':")
+        print(f"\n Содержимое директории '{path}':")
         print("Папки:")
         for name in dir_obj.subdirectories:
-            print("  📁", name)
+            print("  ", name)
         print("Файлы:")
         for name in dir_obj.files:
-            print("  📄", name)
+            print("  ", name)
 
     # Команда 3: записать в файл (создать или перезаписать)
     def write_file(self, path, content):
@@ -84,7 +84,7 @@ class FileSystem:
             dir_obj.files[file_name] = File(file_name)
 
         dir_obj.files[file_name].content = content
-        print(f"✅ Файл '{path}' записан.")
+        print(f" Файл '{path}' записан.")
 
     # Команда 4: прочитать содержимое файла
     def read_file(self, path):
@@ -94,15 +94,13 @@ class FileSystem:
 
         dir_obj = self._traverse(dir_path)
         if dir_obj is None or file_name not in dir_obj.files:
-            print(f"❌ Файл '{path}' не найден.")
+            print(f" Файл '{path}' не найден.")
             return
 
-        print(f"\n📖 Содержимое файла '{path}':")
+        print(f"\n Содержимое файла '{path}':")
         print(dir_obj.files[file_name].content)
 
-# ----------------------------
-# Пример работы с системой
-# ----------------------------
+
 
 def main():
     fs = FileSystem()
@@ -136,7 +134,7 @@ def main():
         elif cmd == "read" and len(parts) > 1:
             fs.read_file(parts[1])
         else:
-            print("❌ Неизвестная команда или отсутствует путь.")
+            print(" Неизвестная команда или отсутствует путь.")
 
 if __name__ == "__main__":
     main()

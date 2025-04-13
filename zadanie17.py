@@ -36,26 +36,26 @@ class Conference:
     def add_talk(self, talk: Talk):
         for existing in self.talks:
             if self._overlaps(talk, existing):
-                print(f"⚠️ Пересечение с докладом: '{existing.title}'")
+                print(f"Пересечение с докладом: '{existing.title}'")
                 return
         self.talks.append(talk)
-        print(f"✅ Доклад '{talk.title}' добавлен")
+        print(f"Доклад '{talk.title}' добавлен")
 
     def _overlaps(self, t1: Talk, t2: Talk) -> bool:
         return t1.start_minutes < t2.end_minutes and t2.start_minutes < t1.end_minutes
 
     def show_schedule(self):
-        print("\n📅 Расписание:")
+        print("\nРасписание:")
         for talk in sorted(self.talks, key=lambda t: t.start_minutes):
             print(f"  - {talk}")
 
     def total_talk_time(self):
         total = sum(talk.duration for talk in self.talks)
-        print(f"\n🕓 Общее время докладов: {total} минут")
+        print(f"\nОбщее время докладов: {total} минут")
 
     def longest_break(self):
         if len(self.talks) < 2:
-            print("\nℹ️ Недостаточно докладов для перерывов.")
+            print("\nНедостаточно докладов для перерывов.")
             return
 
         sorted_talks = sorted(self.talks, key=lambda t: t.start_minutes)
@@ -66,11 +66,11 @@ class Conference:
             if gap > max_break:
                 max_break = gap
 
-        print(f"\n🛋️ Самый длинный перерыв между докладами: {max_break} минут")
+        print(f"\nСамый длинный перерыв между докладами: {max_break} минут")
 
 def main():
     conf = Conference()
-    print("🔧 Планировщик конференции")
+    print("Планировщик конференции")
     
     while True:
         title = input("\nВведите тему доклада (или 'выход'): ")

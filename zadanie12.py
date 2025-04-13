@@ -30,3 +30,12 @@ class C(A, B):
 
 class D(B, A):
     pass
+
+c = C()
+c. hello()
+c.good_evening()
+d = D()
+d.hello()
+d.good_evening()
+print(c)
+print(d)
