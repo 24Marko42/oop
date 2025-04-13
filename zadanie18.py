@@ -25,8 +25,8 @@ class File:
 class Directory:
     def __init__(self, name):
         self.name = name
-        self.subdirectories = {}  # словарь: имя -> Directory
-        self.files = {}           # словарь: имя -> File
+        self.subdirectories = {}  # словари: имя -> Directory
+        self.files = {}           #          имя -> File
 
 # Класс файловая система
 class FileSystem:
