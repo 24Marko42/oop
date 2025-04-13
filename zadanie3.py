@@ -1,29 +1,15 @@
-# Создайте класс Triangle, представляющий треугольник.
-# Конструктор этого класса должен принимать на вход 3 числа (длины сторон треугольника).
-# Также у этого класса должен быть метод perimeter(), возвращающий периметр.
-# Отнаследуйте от класса Triangle класс EquilateralTriangle, представляющий равносторонний треугольник.
-# Переопределите конструктор этого класса с использованием конструктора базового класса.
-# Конструктор класса EquilateralTriangle должен принимать на вход 1 число (длину стороны).
+# Напишите класс Selector. Экземпляр этого класса при инициализации получает список чисел. Вызов
+# метода get_odds возвращает нечётные числа из первоначального списка, вызов get_evens —
+# чётные.
+# Числа должны идти в том же порядке, в котором они были в изначальном списке.
 
 
-class Triangle:
-    def __init__(self, a, b, c):
-        self.a = a
-        self.b = b
-        self.c = c
+class Selector:
+    def __init__(self, numbers):
+        self.numbers = numbers  # сохраняем список чисел
 
-    def perimeter(self):
-        return self.a + self.b + self.c
-    
-class EquilateralTriangle(Triangle):
-    def __init__(self, a):
-        super().__init__(a, a, a)
+    def get_odds(self):
+        return [num for num in self.numbers if num % 2 == 1]
 
-    def perimeter(self):
-        return super().perimeter()
-    
-
-Triangle1 = Triangle(1, 4, 5)
-print(Triangle1.perimeter())
-Triangle2 = EquilateralTriangle(2)
-print(Triangle2.perimeter())
+    def get_evens(self):
+        return [num for num in self.numbers if num % 2 == 0]
